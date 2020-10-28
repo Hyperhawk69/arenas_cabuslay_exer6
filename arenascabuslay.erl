@@ -4,7 +4,7 @@
 chat_init() ->
 	String = io:get_line ("Enter your name: "),
 	Name = string:trim(String, trailing, "\n."),
-	register(node1, spawn(chat,node1,[Name])).
+	register(node1, spawn(arenascabuslay,node1,[Name])).
 
 node1(Name) ->
 	receive
@@ -29,7 +29,7 @@ node1(Name) ->
 chat_init2(Node1_Node) ->
 	String2 = io:get_line ("Enter your name: "),
 	Name2 = string:trim(String2, trailing, "\n."),
-	spawn(chat,node2_init,[Name2,Node1_Node]).
+	spawn(arenascabuslay,node2_init,[Name2,Node1_Node]).
 
 
 node2_init(Name2,Node1_Node) ->
