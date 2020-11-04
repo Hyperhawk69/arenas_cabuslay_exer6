@@ -12,13 +12,22 @@ init_server() -> %starts the server that will hold a list of nodes that are logg
 server(User_List) -> %holds a list of nodes that are logged in and sends messages to other nodes
     receive
         {Chat_Pid, From, Node_Name, logon} -> %appends a node to the list if logged in
-       	    io:format("~s logged in.~n", [Node_Name]),
+       	    io:format("~s logged in~n", [Node_Name]),
             New_User_List = server_logon(Chat_Pid, From, User_List),
             server(New_User_List);
 
         {Node_Name, Node_Message, Sender_Pid} -> %sends a message to all other nodes
-        	io:format("~s sent a message.~n", [Node_Name]),
+        	io:format("~s sent a message~n", [Node_Name]),
         	send_message(User_List, Node_Name, Node_Message, Sender_Pid),
+        	if
+				Node_Message=="bye" ->
+
+					init:stop(),%STOP SERVER NODE
+					io:format("~s has disconnected~n",[Node_Name]);	
+
+
+				true -> ok %Don't need to do anything if false
+			end,
         	server(User_List)
     end.
 
