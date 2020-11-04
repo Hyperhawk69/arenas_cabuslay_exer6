@@ -1,3 +1,7 @@
+%Arenas, Angelo Gabriel
+%Cabuslay, Ryan Vincent
+%T-1L
+
 -module(arenascabuslay).
 -compile(export_all).
 

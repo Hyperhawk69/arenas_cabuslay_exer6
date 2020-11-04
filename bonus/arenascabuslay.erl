@@ -1,10 +1,14 @@
--module(arenascabuslay).
--compile(export_all).
+%Arenas, Angelo Gabriel
+%Cabuslay, Ryan Vincent
+%T-1L
 
 %To run:
 %1. init_server() on a terminal
 %2. Open other terminals for each chat node
 %3. In the other terminals, init_chat(Server_Node)
+
+-module(arenascabuslay).
+-compile(export_all).
 
 init_server() -> %starts the server that will hold a list of nodes that are logged in
     register(messenger, spawn(arenascabuslay, server, [[]])).
